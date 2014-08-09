@@ -141,10 +141,9 @@ def on_left_click(event):
     for j in range(0, field.height):
         for i in range(0, field.width):
             if field.field[i][j] != '*' and field.field[i][j] == '.':
-                field.field[i][j] = '!'
-            for n in NUM:
-                if field.field[i][j] == n:
-                    field.field[i][j] = str(n) + 'v'
+                for n in NUM:
+                    if field.field[i][j] == n:
+                        field.field[i][j] = str(n) + 'v'
             if field.field[i][j] == '.':
                 if field.field[i][j] != '*' or 'X':
                     if (i, j) == (x, y):
