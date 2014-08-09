@@ -66,8 +66,6 @@ def debug():
     draw_on_canvas()
 
 
-
-
 def on_right_click(event):
     global field, game_over, NUMBER_OF_FLAG
 
@@ -133,7 +131,7 @@ def on_left_click(event):
                 if (i, j) == (x, y):
                     #print ('i = {}, y = {}, x = {}, y = {}'.format(i, j, x, y))
                     field.field[i][j] = 'X'
-                    #print ('Btoooom! Allah akbar! Terrorist win!')
+                    print ('Btoooom! Allah akbar! Terrorist win!')
                     lable.config(text ="You lost!", bg = 'black', foreground= 'white' )
                     #game_over = True
                     break
@@ -145,7 +143,7 @@ def on_left_click(event):
                     if field.field[i][j] == n:
                         field.field[i][j] = str(n) + 'v'
             if field.field[i][j] == '.':
-                if field.field[i][j] != '*' or 'X':
+                if field.field[i][j] not in ['*', 'X']:
                     if (i, j) == (x, y):
                         field.field[i][j] = '!'
 
