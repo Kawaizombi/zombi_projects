@@ -11,7 +11,7 @@ class BattleField():
         self.difficulty = difficulty
 
     def generate_field(self):
-        field = [['.' for i in range (self.width)] for j in range(self.height)]
+        field = [[Cell(False, 'empty', i, j) for i in range (self.width)] for j in range(self.height)]
         return field
 
     def put_mine(self, x, y):
@@ -58,10 +58,20 @@ class BattleField():
         # return how_many_mines
 
 
+class Cell():
+    def __init__(self, visibility, content, x, y):
+        self.visibility = visibility
+        self.content = content
+        self.x = x
+        self.y = y
+
+
 if __name__ == '__main__':
     field = BattleField(10,10,'hard')
-    field.create_mines()
-    field.count_mines_around()
+    #field.create_mines()
+    #field.count_mines_around()
     print (field.field)
+    cell = Cell(True, 'bomb', 1, 1)
+    print (cell.content)
 
 
