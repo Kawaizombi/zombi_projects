@@ -9,19 +9,24 @@ class BattleField():
         self.height = height
         self.field = self.generate_field()
         self.difficulty = difficulty
+        self.create_mines()
 
     def generate_field(self):
-        field = [[Cell(False, 'empty', i, j) for i in range (self.width)] for j in range(self.height)]
+        field = [[Cell(self, 'empty', i, j) for i in range (self.width)] for j in range(self.height)]
         return field
 
     def put_mine(self, x, y):
-        self.field[y][x] = '*'
+        self.field[y][x].content = 'bomb'
 
     def create_mines(self):
-        for m in range(40):
+        for m in range(10):
             x = random.randint(0, self.width-1)
             y = random.randint(0, self.height-1)
             self.put_mine(x, y)
+
+    def get_at(self, x, y):
+        return self.field[x][y]
+
 
     def on_click(self, x, y):
         if self.field[y][x] == '*':
@@ -59,8 +64,10 @@ class BattleField():
 
 
 class Cell():
-    def __init__(self, visibility, content, x, y):
-        self.visibility = visibility
+    def __init__(self, field, content, x, y):
+        self.flag = False
+        self.visibility = False
+        self.field = field
         self.content = content
         self.x = x
         self.y = y
@@ -70,8 +77,8 @@ if __name__ == '__main__':
     field = BattleField(10,10,'hard')
     #field.create_mines()
     #field.count_mines_around()
-    print (field.field)
-    cell = Cell(True, 'bomb', 1, 1)
-    print (cell.content)
+    for j in range(0, field.width):
+            for i in range(0, field.width):
+                print(field.field[i][j].content)
 
 
